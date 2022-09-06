@@ -105,7 +105,14 @@ test('msg from linked no external', async () => {
   expect(await page.textContent('.linked-no-external')).toMatch('Hello World!')
 })
 
-test('msg from linked no external', async () => {
+test('msg from entries', async () => {
+  await page.goto(url)
+  expect(await page.textContent('.entries')).toMatch(
+    'dir-entry ~ file-entry ~ cjs-entry'
+  )
+})
+
+test('msg from virtual dep', async () => {
   await page.goto(url)
   expect(await page.textContent('.dep-virtual')).toMatch('[success]')
 })

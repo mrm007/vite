@@ -27,6 +27,10 @@ import { setMessage } from 'external-entry/entry'
 setMessage('Hello World!')
 import externalUsingExternalEntry from 'external-using-external-entry'
 
+import dirEntry from 'entries/dir'
+import fileEntry from 'entries/file'
+import cjsEntry from 'pkg-exports-cjs/entry'
+
 export async function render(url, rootDir) {
   let html = ''
 
@@ -80,6 +84,9 @@ export async function render(url, rootDir) {
 
   const linkedNoExternalMessage = linkedNoExternal()
   html += `\n<p class="linked-no-external">message from linked-no-external: ${linkedNoExternalMessage}</p>`
+
+  const entries = [dirEntry, fileEntry, cjsEntry].join(' ~ ')
+  html += `\n<p class="entries">message from entries: ${entries}</p>`
 
   html += `\n<p class="dep-virtual">message from dep-virtual: ${virtualMessage}</p>`
 
